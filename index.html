@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - A Pen by Aylín Dawyer</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html><script>var __pbpa = true;</script><script>var translated_warning_string = 'Aviso: Nunca introduzcas tu contrase\u00f1a de Tumblr a menos que la direcci\u00f3n \u201chttps://www.tumblr.com/login\u201d\x0aaparezca en la barra del navegador.\x0a\x0aTambi\u00e9n deber\u00edas ver el emblema verde de \u201cTumblr, Inc.\u201d en la barra de direcciones.\x0a\x0aLos spammers y otras personas malintencionadas utilizan formularios falsos para obtener contrase\u00f1as de forma il\u00edcita.\x0a\x0aTumblr jam\u00e1s te pedir\u00e1 que inicies sesi\u00f3n desde el blog de un usuario.\x0a\x0a\u00bfSeguro que quieres continuar?';</script><script type="text/javascript" language="javascript" src="https://assets.tumblr.com/assets/scripts/pre_tumblelog.js?_v=b9f848c06fcba7eaf305d4a7cb7a1b98"></script><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+   
+    <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# blog: http://ogp.me/ns/blog#"><title>RENDEZVOUS</title>
+    <style>figure{margin:0}.tmblr-iframe{position:absolute}.tmblr-iframe.hide{display:none}.tmblr-iframe--amp-cta-button{visibility:hidden;position:fixed;bottom:10px;left:50%;transform:translateX(-50%);z-index:100}.tmblr-iframe--amp-cta-button.tmblr-iframe--loaded{visibility:visible;animation:iframe-app-cta-transition .2s ease-out}</style><link rel="stylesheet" media="screen" href="https://assets.tumblr.com/client/prod/standalone/blog-network-npf/index.build.css?_v=5aa1681cecf4df31e8ffd96f64605fcf"><link rel="shortcut icon" href="https://64.media.tumblr.com/avatar_c43d1954a050_128.pnj">
+    <link rel="alternate" type="application/rss+xml" href="https://staplerer.tumblr.com/rss">
+    <meta name="description" content="rainfect&zwnj; &ldquo; it&rsquo;s almost impossible to get heads five times in a row. it doesn&rsquo;t take a t-doll&rsquo;s processing capabilities to know that much, yet the proof staring back at her says otherwise ( in the..." />
+   
+ 
+ 
+<!---Hitagi Senjougahara.
+ 
+ Code made by kizumonogataris (Chou). Anyone found stealing or trying to replicate this theme will be threatened to eat extra sweet cakes. 
+ 
+--->
+ 
+<meta name="text:Link 1" content="" />
+<meta name="text:Link 1 Text" content="" />
+<meta name="text:Link 2" content="" />
+<meta name="text:Link 2 Text" content="" />
+<meta name="text:Link 3" content="" />
+<meta name="text:Link 3 Text" content="" />
+<meta name="if:ShowLink3" content="1" />
+ 
+<script type="text/javascript">
+// <![CDATA[
+var colour="#dedede"; // what colour are the blobs
+var speed=62; // speed of animation, lower is faster
+var blobs=10; // how many blobs are in the jar
+var charc=String.fromCharCode(9679); // a blob - can be changed to charc='hello' or charc='*' for a different effect
+ 
+window.onload=fill_the_jar;
+var div;
+var xpos=new Array();
+var ypos=new Array();
+var zpos=new Array();
+var dx=new Array();
+var dy=new Array();
+var dz=new Array();
+var blob=new Array();
+var swide=800;
+var shigh=600;
+
+ 
+function fill_the_jar() {
+var i, dvs;
+div=document.createElement('div');
+dvs=div.style;
+dvs.position='fixed';
+dvs.zIndex='99999999';
+dvs.opacity='0.5';
+dvs.pointerevents='none';
+dvs.left='0px';
+dvs.top='0px';
+dvs.width='1px';
+dvs.height='1px';
+document.body.appendChild(div);
+set_width();
+for (i=0; i<blobs; i++) {
+add_blob(i);
+jamjar(i);
+}
+}
+ 
+function add_blob(ref) {
+var dv, sy;
+dv=document.createElement('div');
+dv.appendChild(document.createTextNode(charc));
+sy=dv.style;
+sy.position='absolute';
+sy.textAlign="center";
+if (navigator.appName=="Microsoft Internet Explorer") {
+sy.fontSize="10px";
+sy.width="100px";
+sy.height="100px";
+sy.paddingTop="40px";
+sy.color=colour;
+}
+else sy.color='rgba(0,0,0,0)';
+ypos[ref]=Math.floor(shigh*Math.random());
+dy[ref]=(0.5+Math.random())*(Math.random()>.5?2:-2);
+xpos[ref]=Math.floor(swide*Math.random());
+dx[ref]=(0.5+Math.random())*(Math.random()>.5?2:-2);
+zpos[ref]=Math.random()*20;
+dz[ref]=(0.5+Math.random())*(Math.random()>.5?.5:-.5);
+blob[ref]=dv;
+div.appendChild(blob[ref]);
+set_blob(ref);
+}
+ 
+function rejig(ref, xy) {
+if (xy=='y') {
+dx[ref]=(0.5+Math.random())*sign(dx[ref]);
+dy[ref]=(0.5+Math.random())*-sign(dy[ref]);
+}
+else {
+dx[ref]=(0.5+Math.random())*-sign(dx[ref]);
+dy[ref]=(0.5+Math.random())*sign(dy[ref]);
+}
+}
+ 
+function sign(a) {
+if (a<0) return (-2);
+else if (a>0) return (2);
+else return (0);
+}
+ 
+function set_blob(ref) {
+var sy;
+sy=blob[ref].style;
+sy.top=ypos[ref]+'px';
+sy.left=xpos[ref]+'px';
+if (navigator.appName=="Microsoft Internet Explorer") {
+sy.filter="glow(color="+colour+",strength="+zpos[ref]+")";
+sy.fontSize=30-zpos[ref]+"px";
+}
+else {
+sy.textShadow=colour+' 0px 0px '+zpos[ref]+'px';
+sy.fontSize=40+zpos[ref]+'px';
+}
+}
+ 
+function jamjar(ref) {
+if (ypos[ref]+dy[ref]<-50 || ypos[ref]+dy[ref]>shigh) rejig(ref, 'y');
+ypos[ref]+=dy[ref];
+if (xpos[ref]+dx[ref]<-50 || xpos[ref]+dx[ref]>swide) rejig(ref, 'x');
+xpos[ref]+=dx[ref];
+if (zpos[ref]+dz[ref]<0 || zpos[ref]+dz[ref]>20) dz[ref]=-dz[ref];
+zpos[ref]+=dz[ref];
+set_blob(ref);
+setTimeout("jamjar("+ref+")", speed);
+}
+ 
+window.onresize=set_width;
+function set_width() {
+var sw_min=999999;
+var sh_min=999999;
+if (document.documentElement && document.documentElement.clientWidth) {
+if (document.documentElement.clientWidth>0) sw_min=document.documentElement.clientWidth;
+if (document.documentElement.clientHeight>0) sh_min=document.documentElement.clientHeight;
+}
+if (typeof(self.innerWidth)!="undefined" && self.innerWidth) {
+if (self.innerWidth>0 && self.innerWidth<sw_min) sw_min=self.innerWidth;
+if (self.innerHeight>0 && self.innerHeight<sh_min) sh_min=self.innerHeight;
+}
+if (document.body.clientWidth) {
+if (document.body.clientWidth>0 && document.body.clientWidth<sw_min) sw_min=document.body.clientWidth;
+if (document.body.clientHeight>0 && document.body.clientHeight<sh_min) sh_min=document.body.clientHeight;
+}
+if (sw_min==999999 || sh_min==999999) {
+sw_min=800;
+sh_min=600;
+}
+swide=sw_min;
+shigh=sh_min;
+}
+// ]]>
+</script>
+ 
+<style type="text/css">
+ 
+::-webkit-scrollbar-thumb {
+height:auto;
+background-color:#DCBED3;
+}
+ 
+::-webkit-scrollbar {
+height:9px;
+width:4px;
+background-color:#D9DDE3;
+}
+ 
+body {
+background:#DECFD8;
+margin:0px;
+color:#94848E;
+font-family:calibri;
+font-size:12px;
+line-height:100%;
+letter-spacing:0px;
+text-align:justify;
+background-image:url('https://i.imgur.com/l2qUBBp.png');
+background-repeat:no-repeat;
+background-position: left bottom;
+background-attachment: fixed;
+}
+     
+     
+img {
+    border:none;
+}
+     
+blockquote {
+margin-left: 5px;
+padding-left:5px;
+border-left:3px solid #BA86B1;
+}
+       
+blockquote blockquote {
+padding-left:5px;
+border-left:3px solid #C7A5C0;
+}
+     
+h1 {
+font-size:12px;
+text-align: center;
+letter-spacing:2px;
+text-transform:uppercase;
+font-family:'CAMBRIA';
+font-style:none;
+line-height:10px;
+text-align:left;
+padding:0px;
+color: #D099BD;
+}
+
+h1:first-letter {
+    font-size: 15px;
+    font-style: italic;
+    color: #AD5B87;
+    letter-spacing: -1px;
+}
+ 
+h2 {
+    font-size: 15px;
+    font-family: cambria;
+    font-weight: none;
+    font-style: italic;
+    line-height: 100%;
+}
+   
+#entries a {
+text-decoration:none;
+outline:none;
+-moz-outline-style:none;
+color:#D379B7;
+text-transform: uppercase;
+font-family: calibri;
+font-size: 11px;
+-moz-transition-duration:0.3s;
+-webkit-transition-duration:0.3s;
+-o-transition-duration:0.3s;
+}
+
+#entries a:hover {
+    color:#D379B7;
+    text-decoration:underline;
+    -moz-transition-duration:0.3s;
+    -webkit-transition-duration:0.3s;
+    -o-transition-duration:0.3s;
+}
+ 
+ 
+/*ENTRIES*/
+ 
+#entries {
+padding:5px;
+width:420px;
+height: 580px;
+overflow-y: scroll;
+overflow-x:hidden;
+left:65px;
+bottom:30px;
+position: fixed;
+font-size:12px;
+font-family:'calibri';
+letter-spacing:0px;
+}
+
+#entries::-webkit-scrollbar-thumb {
+display:none;
+}
+ 
+#entries::-webkit-scrollbar {
+display:none;
+}
+
+#post small, sub, sup { 
+    font-size: 12px;
+}
+
+#post b, strong {
+    font-family:calibri;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: #C687AD;
+    text-transform: uppercase;
+}
+
+#post i, em {
+    font-family: times new roman;
+    font-size: 13px;
+    color: #815B79;
+    letter-spacing: -1px;
+}
+     
+#post {
+width:400px;
+padding-bottom:40px;
+padding:10px;
+margin-top:10px;
+letter-spacing: 1px;
+background-color: #DECFD8;
+}
+
+blockquote img {
+    max-height: 400px;
+    max-width: 284px;
+}
+ 
+/*SIDEBAR*/
+ 
+#sidebar {
+position:fixed;
+margin-left:100px;
+margin-top:80px;
+margin-left:170px;
+}
+
+#links {
+    position:fixed;
+    font-family:calibri;
+    width:300px;
+    bottom:37px;
+    left:529px;
+    font-size:10px;
+    text-transform:uppercase;
+    color:#844239;
+    text-align:right;
+    }
+   
+#links a{
+    display: block;
+    line-height: 120%;
+    padding:3px;
+    width: 75px;
+    height: 12px;
+    margin-top: 5px;
+    margin-left:8px;
+    letter-spacing: 1px;
+    color: #D4AEBF;
+    background-color: #D9DDE3;
+    -moz-transition-duration:.7s;
+    -webkit-transition-duration:.7s;
+    -o-transition-duration:.7s;
+    text-decoration: none;
+    }
+   
+    #links a:hover {
+    letter-spacing: 2px;
+    color: #D9DDE3;
+    padding-left: 40px;
+    background-color: #D4AEBF;
+    -moz-transition-duration:.2s;
+    -webkit-transition-duration:.2s;
+    -o-transition-duration:.2s;
+    }
+ 
+#description {
+text-align:center;
+background-color:rgba(218, 222, 225, .4);
+font-family:'consolas';
+width:110px;
+height: 70px;
+overflow-y: scroll;
+line-height: 140%;
+padding: 10px;
+bottom: 250px;
+left:650px;
+font-size:11px;
+position:fixed;
+text-transform:none;
+color:#745889;
+text-shadow: 0 0 5px #9C7DA9;
+border: 1px dashed rgba(218, 222, 225, .6);
+}
+
+#description::-webkit-scrollbar-thumb {
+display:none;
+}
+ 
+#description::-webkit-scrollbar {
+display:none;
+}
+ 
+ 
+#pagination {
+    bottom: 583px;
+    left: 26px;
+    position: fixed;
+    padding:2px;
+    color: #CE75BA;
+    font-family:cambria;
+    letter-spacing:0px;
+    font-size:45px;
+    text-align:left;
+    padding:2px;
+    text-transform:uppercase;
+}
+
+#pagination a {
+    color: #CE75BA;
+    text-decoration: none;
+    -moz-transition-duration:0.3s;
+    -webkit-transition-duration:0.3s;
+    -o-transition-duration:0.3s;
+}
+
+
+#pagination a:hover {
+    color: #EBEEF2;
+    text-decoration: none;
+    -moz-transition-duration:0.3s;
+    -webkit-transition-duration:0.3s;
+    -o-transition-duration:0.3s;
+}
+ 
+ 
+/*POST INFO*/
+ 
+#info {  
+width:399px;
+text-align:center;
+font-family:'trebuchet ms';
+margin-top:3px;
+padding-right: 2px;
+letter-spacing:1px;
+font-size:9px;
+font-style:none;
+padding:1px;
+line-height:10px;
+text-transform:uppercase;
+background-color: #D9DDE3;
+}
+   
+#info a {
+    font-size: 9px;
+    text-align:center;
+    color:#AF648F;
+}
+   
+#info a:hover {
+    -moz-transition-duration:0.3s;
+    -webkit-transition-duration:0.3s;
+    -o-transition-duration:0.3s;
+    color:#AF648F;
+    text-shadow: 0 0 2px #B05F93;
+}
+ 
+#tags {
+width:395px;
+background-color: rgba(240, 237, 239, .4);
+margin-top:0px;
+margin-left: 1px;
+text-align:left;
+font-size:7px;
+padding: 1px;
+opacity:1;
+transition-duration: 0.5s;
+-moz-transition-duration: 0.5s;
+-webkit-transition-duration: 0.5s;
+-o-transition-duration: 0.5s;
+}
+   
+#tags a {
+letter-spacing:0px;
+font-size:9px;
+text-align:justify;
+font-family:'CALIBRI';
+text-decoration:none;
+color:#5E5951;
+}
+ 
+#tags a:hover {
+-moz-transition-duration:0.3s;
+-webkit-transition-duration:0.3s;
+-o-transition-duration:0.3s;
+color:;
+}
+ 
+/*QUESTION*/
+ 
+#asker {
+color:#C88DAA;
+padding:14px;
+font-family:consolas;
+font-size:11px;
+letter-spacing:1px;
+text-align:center;
+margin-top:0px;
+line-height:150%;
+background-color:#E0D9E0;
+border-radius: 30px;
+border-left: 5px solid #DB7EBE;
+border-right: 5px solid #DB7EBE;
+}
+ 
+/*CREDIT*/
+ 
+#cred {
+position:fixed;
+font-family:'Calibri';
+text-transform:uppercase;
+font-size:8px;
+right:9px;
+bottom:9px;
+padding:5px;
+letter-spacing:1px;
+background-color: #D9DDE3;
+text-decoration: none;
+}
+
+#cred a {
+    text-decoration: none;
+    color: #C562AC;
+}
+ 
+</style><meta name="robots" content="noindex"/><link rel="alternate" href="android-app://com.tumblr/tumblr/x-callback-url/blog?blogName=staplerer%26postID=182026244013" /><link rel="alternate" href="ios-app://305343404/tumblr/x-callback-url/blog?blogName=staplerer&postID=182026244013" /><link rel="alternate" type="application/json+oembed" href="https://www.tumblr.com/oembed/1.0?url=https://staplerer.tumblr.com/post/182026244013/rainfect-its-almost-impossible-to-get-heads" title="rainfect&zwnj;
+&ldquo; it&rsquo;s almost impossible to get heads five times in a row. it doesn&rsquo;t take a t-doll&rsquo;s processing capabilities to know that much, yet the proof staring back at her says otherwise ( in the form of a smiling blonde ). &ldquo;that one&rsquo;s cute,&rdquo; she..."/><script
+    defer
+    type="application/javascript"
+    id="bilmur"
+    data-provider="tumblr.com"
+    data-service="blognetwork"
+    data-customproperties='{"theme": ""}'
+    nonce="d6FLCY7QnsT10cfzp9TDNXuDPO8"
+    src="https://s0.wp.com/wp-content/js/bilmur.min.js?m=202250"
+  ></script><script src="https://assets.tumblr.com/assets/scripts/tumblelog_post_message_queue.js?_v=a8fadfa499d8cb7c3f8eefdf0b1adfdd"></script><link rel="stylesheet" type="text/css" href="https://assets.tumblr.com/fonts/brutaltype/stylesheet.css?v=1"><meta name="keywords" content="rainfect,;ar15 01" /><!-- BEGIN TUMBLR FACEBOOK OPENGRAPH TAGS --><!-- If you'd like to specify your own Open Graph tags, define the og:url and og:title tags in your theme's HTML. --><!-- Read more: http://ogp.me/ --><meta property="fb:app_id" content="48119224995" /><meta property="og:site_name" content="Tumblr" /><meta property="og:title" content="RENDEZVOUS" /><meta property="og:description" content="rainfect&zwnj;
+it&rsquo;s almost impossible to get heads five times in a row. it doesn&rsquo;t take a t-doll&rsquo;s processing capabilities to know that much, yet the proof staring back at her says otherwise ( in the form..." /><meta property="og:url" content="https://staplerer.tumblr.com/post/182026244013/rainfect-its-almost-impossible-to-get-heads" /><meta property="og:type" content="article" /><meta property="og:image" content="https://64.media.tumblr.com/8cb88ccdb42e8987739eb5565798b228/tumblr_inline_pku1mizpYD1w48wnf_100.png" /><meta property="og:image:secure_url" content="https://64.media.tumblr.com/8cb88ccdb42e8987739eb5565798b228/tumblr_inline_pku1mizpYD1w48wnf_100.png" /><meta property="og:image:type" content="image/png" /><meta property="og:image:width" content="91" /><meta property="og:image:height" content="91" /><meta property="og:image" content="https://64.media.tumblr.com/5823713471c6b41aab10cd4a6f83abef/tumblr_inline_pld3ybsGaC1s356u7_100.png" /><meta property="og:image:secure_url" content="https://64.media.tumblr.com/5823713471c6b41aab10cd4a6f83abef/tumblr_inline_pld3ybsGaC1s356u7_100.png" /><meta property="og:image:type" content="image/png" /><meta property="og:image:width" content="100" /><meta property="og:image:height" content="100" /><meta property="al:ios:url" content="tumblr://x-callback-url/blog?blogName=staplerer&amp;postID=182026244013" /><meta property="al:ios:app_name" content="Tumblr" /><meta property="al:ios:app_store_id" content="305343404" /><meta property="al:android:url" content="tumblr://x-callback-url/blog?blogName=staplerer&amp;postID=182026244013" /><meta property="al:android:app_name" content="Tumblr" /><meta property="al:android:package" content="com.tumblr" /><!-- END TUMBLR FACEBOOK OPENGRAPH TAGS --><!-- GOOGLE CAROUSEL --><script type="application/ld+json">
+	{"@type":"SocialMediaPosting","url":"https:\/\/staplerer.tumblr.com\/post\/182026244013\/rainfect-its-almost-impossible-to-get-heads","mainEntityOfPage":true,"datePublished":"2019-01-15T07:53:54+00:00","author":"staplerer","image":{"@list":["https:\/\/64.media.tumblr.com\/8cb88ccdb42e8987739eb5565798b228\/tumblr_inline_pku1mizpYD1w48wnf_100.png","https:\/\/64.media.tumblr.com\/5823713471c6b41aab10cd4a6f83abef\/tumblr_inline_pld3ybsGaC1s356u7_100.png"]},"articleBody":"rainfect\u200c\n\u201c it\u2019s almost impossible to get heads five times in a row. it doesn\u2019t take a t-doll\u2019s processing capabilities to know that much, yet the proof staring back at her says otherwise ( in the form of a smiling blonde ). \u201cthat one\u2019s cute,\u201d she comments, but something else has occured to her...","@context":"http:\/\/schema.org"}</script><link rel="canonical" href="https://staplerer.tumblr.com/post/182026244013/rainfect-its-almost-impossible-to-get-heads" /></head><body>
+ 
+<div id="sidebar">
+<a title="home" href="/">
+</a>
+</div>
+ 
+<div id="links">
+<a href="https://xat.me/Hypnos">♡ My Love</a>
+<a href="https://xat.me/VoidDaughter">Anto</a>
+<a href="https://xat.me/xAcidCake">Caro</a>
+<a href="https://xat.com/Amaterasu">My House</a>
+
+ 
+<div id="description"><br><big><big>❝ I ♥ YOU ❞</big></big>
+<p>Eileen / 22yo
+ 
+</div>
+</div>
+
+ 
+
+ 
+<div id="entries">
+
+<div id="post">
+ 
+
+<h1></h1>
+<div class="media-holder media-holder-draggable media-holder-figure" contenteditable="false" draggable="true" style="display: block;"><figure class="" data-orig-height="100" data-orig-width="100"><img src="https://64.media.tumblr.com/1ab75b0b2e773a28cf7da6eda354213e/806884db405ffa94-f5/s2048x3072/82e262f6304d0136fe157a79676c9e07075ec6cf.jpg" data-img-key="526" data-orig-height="500" data-orig-width="281" width="400" height="230" alt="image" />
+<figure class="" data-orig-height="100" data-orig-width="100"><img src="https://64.media.tumblr.com/b181ec364389decc38e1e958af8c3628/806884db405ffa94-8c/s2048x3072/e27b1f8364bd5198e40fb9a246c5aa165782ca28.jpg" data-img-key="526" data-orig-height="500" data-orig-width="281" width="400" height="230" alt="image" />&hellip;</p><p>&nbsp; &nbsp; <b>&ldquo;It wouldn&rsquo;t be worth it&hellip; I think I can earn a bit more in game, so maybe she&rsquo;ll come in a solo.&rdquo;</b> Her voice was uncharacteristically somber for such an inconsequential dilemma, but returned to its usual sharpness to add&mdash;</p><p>
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+ 
+       
+    
+<iframe scrolling="no" width="1" height="1" frameborder="0" style="background-color:transparent; overflow:hidden; position:absolute; top:0; left:0; z-index:9999;" id="ga_target"></iframe><script type="text/javascript">
+    (function(){
+        var analytics_frame = document.getElementById('ga_target');
+        var analytics_iframe_loaded;
+        var user_logged_in;
+        var blog_is_nsfw = 'No';
+
+        var eventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+        var eventer = window[eventMethod];
+        var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
+        eventer(messageEvent,function(e) {
+            var message = (e.data && e.data.split) ? e.data.split(';') : '';
+            switch (message[0]) {
+                case 'analytics_iframe_loaded':
+                    analytics_iframe_loaded = true;
+                    postCSMessage();
+                    postGAMessage();
+                    break;
+                case 'user_logged_in':
+                    user_logged_in = message[1];
+                    postGAMessage();
+                    break;
+            }
+        }, false);
+
+        analytics_frame.src = "https://assets.tumblr.com/analytics.html?_v=9f5febfd57a8a649c598d888f2d9e062#" +
+                              "https://staplerer.tumblr.com";
+        function postGAMessage() {
+            if (analytics_iframe_loaded && user_logged_in) {
+                var is_ajax = false;
+                analytics_frame.contentWindow.postMessage(['tick_google_analytics', is_ajax, user_logged_in, blog_is_nsfw, '/post/182026244013/rainfect-its-almost-impossible-to-get-heads?route=%2Fpost%2F%3Aid%2F%3Asummary'].join(';'), analytics_frame.src.split('/analytics.html')[0]);
+            }
+        }
+        function postCSMessage() {
+            COMSCORE = true;
+            analytics_frame.contentWindow.postMessage('enable_comscore;' + window.location, analytics_frame.src.split('/analytics.html')[0]);
+        }
+    })();
+<!-- partial -->
+  
+</body>
+</html>
